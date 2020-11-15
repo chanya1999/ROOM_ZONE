@@ -1,0 +1,70 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="android:screenOrientation">portrait</item>
+    </style>
+
+    <style name="FullScreen" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowLayoutInDisplayCutoutMode" tools:targetApi="o_mr1">never</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:screenOrientation">portrait</item>
+    </style>
+
+    <style name="DarkButtonStyle" parent="Widget.AppCompat.Button">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:background">@drawable/bg_dark_button</item>
+        <item name="android:fontFamily">@font/fc_iconic_bold</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <style name="LightButtonStyle" parent="Widget.AppCompat.Button">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:background">@drawable/bg_light_button</item>
+        <item name="android:fontFamily">@font/fc_iconic_bold</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <style name="RedButtonStyle" parent="Widget.AppCompat.Button">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:background">@drawable/bg_red_button</item>
+        <item name="android:fontFamily">@font/fc_iconic_bold</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <style name="LightOvalButtonStyle" parent="Widget.AppCompat.Button">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:background">@drawable/bg_light_oval_button</item>
+        <item name="android:fontFamily">@font/fc_iconic_bold</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <style name="HeadStyle">
+        <item name="android:fontFamily">@font/fc_iconic_bold</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:textSize">30sp</item>
+        <item name="android:letterSpacing">0.1</item>
+    </style>
+
+    <style name="TopicStyle">
+        <item name="android:fontFamily">@font/fc_iconic_bold</item>
+        <item name="android:textSize">22sp</item>
+        <item name="textAllCaps">true</item>
+    </style>
+
+    <style name="NormalTextStyle">
+        <item name="android:fontFamily">@font/fc_iconic_regular</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:background">@null</item>
+    </style>
+
+</resources>
