@@ -7,39 +7,13 @@
     android:background="#3C3C3C"
     tools:context=".SplashAppLogo">
 
-    <TextView
-        android:id="@+id/textView"
-        style="@style/NormalTextStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="30dp"
-        android:gravity="center|bottom"
-        android:letterSpacing="0.6"
-        android:paddingTop="-0.5dp"
-        android:text="ZONE"
-        android:includeFontPadding="false"
-        android:textColor="@color/colorPrimary"
-        android:textSize="30.2sp"
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/logo_room_text_view" />
-
-    <TextView
-        android:id="@+id/logo_room_text_view"
-        style="@style/HeadStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="37dp"
-        android:gravity="center|top"
-        android:paddingBottom="-0.5dp"
-        android:text="ROOM"
-        android:textColor="#FFFFFF"
-        android:textSize="45sp"
-        android:includeFontPadding="false"
-        app:layout_constraintBottom_toTopOf="@+id/textView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_chainStyle="packed" />
+        tools:srcCompat="@drawable/logo" />
 </androidx.constraintlayout.widget.ConstraintLayout>
