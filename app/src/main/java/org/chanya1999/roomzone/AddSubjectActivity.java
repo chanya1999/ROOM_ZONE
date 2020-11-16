@@ -206,6 +206,7 @@ public class AddSubjectActivity extends AppCompatActivity {
                 selectEndTimeEditText.setText("");
                 roomEditText.setText("");
                 numberOfStudentEditText.setText("");
+                noteEditText.setText("");
             }
         });
     }
