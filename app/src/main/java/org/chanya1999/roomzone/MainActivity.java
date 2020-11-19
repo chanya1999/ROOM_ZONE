@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
                     public void run() {
                         SubjectAdapter adapter = new SubjectAdapter(MainActivity.this, subjects);
                         mRecyclerView.setAdapter(adapter);
-                        if(subjects.length>0){
+                        if(subjects.length==0){
                             isEmptyTextView.setText("Empty");
                             isEmptyTextView.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_baseline_folder_open_24,0,0,0);
                         }
