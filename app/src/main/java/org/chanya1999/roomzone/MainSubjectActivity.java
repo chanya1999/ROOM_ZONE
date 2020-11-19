@@ -118,7 +118,7 @@ public class MainSubjectActivity extends AppCompatActivity {
             public void onClick(View view) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(MainSubjectActivity.this);
                 builder.setTitle("WARNING");
-                builder.setMessage("Do you want to delete "+subject.subjectName + "?");builder.setNegativeButton("NO", null);
+                builder.setMessage("Do you want to delete "+subject.subjectName.toUpperCase() + "?");builder.setNegativeButton("NO", null);
                 builder.setPositiveButton("DELETE", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
