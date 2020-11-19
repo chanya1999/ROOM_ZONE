@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.chanya1999.roomzone.adapter.SubjectAdapter;
@@ -22,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
 
     private Button addClassroomButton;
     private RecyclerView mRecyclerView;
+    private TextView isEmptyTextView;
 
 
     @Override
@@ -40,6 +42,10 @@ public class MainActivity extends AppCompatActivity {
                     public void run() {
                         SubjectAdapter adapter = new SubjectAdapter(MainActivity.this, subjects);
                         mRecyclerView.setAdapter(adapter);
+                        if(subjects.length>0){
+                            isEmptyTextView.setText("Empty");
+                            isEmptyTextView.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_baseline_folder_open_24,0,0,0);
+                        }
                     }
                 });
             }
@@ -51,6 +57,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
+        isEmptyTextView = findViewById(R.id.is_empty_text_view);
         addClassroomButton = findViewById(R.id.add_classroom_button);
         mRecyclerView = findViewById(R.id.subject_recycler_view);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));

@@ -56,5 +56,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/classroom_text_bar" />
 
+    <TextView
+        android:gravity="center|bottom"
+        android:id="@+id/is_empty_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/NormalTextStyle"
+        tools:text="Empty Subject"
+        tools:drawableLeft="@drawable/ic_baseline_folder_open_24"
+        android:textColor="@color/colorDarkBackground"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
