@@ -10,8 +10,10 @@
         android:id="@+id/subject_item_card_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="12dp"
-        android:layout_margin="0.2dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="0.2dp"
+        android:layout_marginLeft="0.2dp"
+        android:layout_marginRight="0.2dp"
         app:cardCornerRadius="12dp">
 
         <LinearLayout
@@ -113,7 +115,7 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_weight="0.75"
+                    android:layout_weight="0.65"
                     android:gravity="right"
                     android:id="@+id/room_layout"
                     android:layout_width="match_parent"
@@ -138,7 +140,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:layout_marginEnd="8dp"
-                        android:maxLength="12"
+                        android:maxLength="20"
                         android:maxLines="1"
                         android:textColor="@android:color/black"
                         tools:text="1234 Sc.1" />
@@ -155,6 +157,7 @@
             <TextView
                 android:id="@+id/s_number_of_student_text_view"
                 style="@style/NormalTextStyle"
+                android:layout_weight="0"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -162,19 +165,47 @@
                 android:layout_marginEnd="4dp"
                 android:layout_marginBottom="8dp"
                 android:maxLines="1"
-                android:text="NUMBER OF STUDENT:"
+                android:text="NUM OF STUDENT:"
                 android:textColor="@android:color/black" />
 
             <TextView
                 android:id="@+id/number_of_student_text_view"
                 style="@style/NormalTextStyle"
-                android:layout_width="wrap_content"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
                 android:layout_marginBottom="8dp"
                 android:maxLines="1"
                 android:textColor="@android:color/black"
                 tools:text="100" />
+
+            <TextView
+                android:id="@+id/s_credit_text_view"
+                android:layout_weight="0"
+                style="@style/NormalTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginEnd="4dp"
+                android:layout_marginBottom="8dp"
+                android:maxLines="1"
+                android:text="CREDIT:"
+                android:textColor="@android:color/black" />
+
+            <TextView
+                android:id="@+id/credit_text_view"
+                style="@style/NormalTextStyle"
+                android:layout_weight="0"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="8dp"
+                android:maxLines="1"
+                android:paddingRight="8dp"
+                android:textColor="@android:color/black"
+                tools:text="3" />
 
         </LinearLayout>
 

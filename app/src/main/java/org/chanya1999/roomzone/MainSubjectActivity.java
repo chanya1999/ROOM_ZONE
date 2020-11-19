@@ -20,7 +20,6 @@ import com.google.gson.Gson;
 import org.chanya1999.roomzone.database.AppDatabase;
 import org.chanya1999.roomzone.model.Subject;
 import org.chanya1999.roomzone.util.AppExecutors;
-import org.chanya1999.roomzone.util.DateConverter;
 import org.chanya1999.roomzone.util.DateFormatter;
 
 import java.util.Calendar;
@@ -33,6 +32,7 @@ public class MainSubjectActivity extends AppCompatActivity {
     private TextView endTimeTextView;
     private TextView roomTextView;
     private TextView numberOfStudentTextView;
+    private TextView creditTextView;
     private EditText noteEditText;
     private TextView lastUpdateTextView;
     private TextView lastUpdateTitleTextView;
@@ -53,6 +53,7 @@ public class MainSubjectActivity extends AppCompatActivity {
         endTimeTextView = findViewById(R.id.m_s_end_time_text_view);
         roomTextView = findViewById(R.id.m_s_room_text_view);
         numberOfStudentTextView = findViewById(R.id.m_s_number_of_student_text_view);
+        creditTextView = findViewById(R.id.m_s_credit_text_view);
         lastUpdateTextView = findViewById(R.id.last_update_text_view);
         lastUpdateTitleTextView = findViewById(R.id.last_update_title_text_view);
         editOrSaveButton = findViewById(R.id.m_s_edit_or_save_note_button);
@@ -70,6 +71,7 @@ public class MainSubjectActivity extends AppCompatActivity {
         endTimeTextView.setText(DateFormatter.formatTimeForUi(subject.endTime));
         roomTextView.setText(subject.room);
         numberOfStudentTextView.setText(subject.numberOfStudent+"");
+        creditTextView.setText(subject.credit+"");
         noteEditText.setText(subject.note);
         noteEditText.setEnabled(editNoteStage);
         lastUpdateTextView.setText(DateFormatter.formatDateForUi(subject.lastUpdate)+" "+DateFormatter.formatTimeForUi(subject.lastUpdate));
@@ -90,7 +92,7 @@ public class MainSubjectActivity extends AppCompatActivity {
 
                 if(!editNoteStage){
                     imm.hideSoftInputFromWindow(view.getWindowToken(),0);
-                    final Subject newSubject = new Subject(subject.id,subject.subjectName,subject.day,subject.startTime,subject.endTime,subject.room,subject.numberOfStudent,noteEditText.getText().toString(), Calendar.getInstance().getTime());
+                    final Subject newSubject = new Subject(subject.id,subject.subjectName,subject.day,subject.startTime,subject.endTime,subject.room,subject.numberOfStudent, subject.credit, noteEditText.getText().toString(), Calendar.getInstance().getTime());
                     AppExecutors executors = new AppExecutors();
                     executors.diskIO().execute(new Runnable() {
                         @Override

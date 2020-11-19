@@ -235,20 +235,49 @@
                     <TextView
                         android:id="@+id/a_number_of_student_text_view"
                         style="@style/NormalTextStyle"
+                        android:layout_weight="0"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="8dp"
-                        android:text="NUMBER OF STUDENT:"
+                        android:text="NUM OF STUDENT:"
                         android:textColor="@color/colorPrimaryDark" />
 
                     <EditText
                         android:id="@+id/number_of_student_edit_text"
                         style="@style/NormalTextStyle"
+                        android:gravity="left"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Input number of student."
+                        android:layout_weight="1"
+                        android:hint="Input number."
                         android:inputType="number"
                         android:maxLength="4"
+                        android:paddingTop="8dp"
+                        android:paddingBottom="8dp"
+                        android:textColor="@android:color/black" />
+
+
+                    <TextView
+                        android:id="@+id/a_credit_text_view"
+                        style="@style/NormalTextStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0"
+                        android:padding="8dp"
+                        android:text="CREDIT:"
+                        android:textColor="@color/colorPrimaryDark" />
+
+                    <EditText
+                        android:id="@+id/credit_edit_text"
+                        style="@style/NormalTextStyle"
+                        android:gravity="left"
+                        android:layout_marginEnd="8dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Input credit."
+                        android:layout_weight="1"
+                        android:inputType="number"
+                        android:maxLength="1"
                         android:padding="8dp"
                         android:textColor="@android:color/black" />
 
@@ -297,7 +326,7 @@
                 android:gravity="start|top"
                 android:hint="NOTE: ........................................................................................................................................................................................................................................................................"
                 android:inputType="textMultiLine"
-                android:maxLength="1000"
+                android:maxLength="10000"
                 android:padding="8dp"
                 android:scrollbarStyle="insideOverlay"
                 android:scrollbarThumbHorizontal="@drawable/bg_button_pressed"

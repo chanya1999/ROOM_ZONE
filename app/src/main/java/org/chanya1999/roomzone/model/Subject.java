@@ -39,6 +39,9 @@ public class Subject {
     @ColumnInfo(name = "number_of_student")
     public final int numberOfStudent;
 
+    @ColumnInfo(name = "credit")
+    public final int credit;
+
     @ColumnInfo(name = "note")
     public final String note;
 
@@ -46,7 +49,7 @@ public class Subject {
     @TypeConverters(DateConverter.class)
     public final Date lastUpdate;
 
-    public Subject(int id, String subjectName, int day, Date startTime, Date endTime, String room, int numberOfStudent, String note, Date lastUpdate) {
+    public Subject(int id, String subjectName, int day, Date startTime, Date endTime, String room, int numberOfStudent, int credit, String note, Date lastUpdate) {
         this.id = id;
         this.subjectName = subjectName;
         this.day = day;
@@ -54,6 +57,7 @@ public class Subject {
         this.endTime = endTime;
         this.room = room;
         this.numberOfStudent = numberOfStudent;
+        this.credit = credit;
         this.note = note;
         this.lastUpdate = lastUpdate;
     }

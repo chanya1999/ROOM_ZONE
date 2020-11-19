@@ -37,6 +37,7 @@ public class AddSubjectActivity extends AppCompatActivity {
     private TextView selectEndTimeEditText;
     private EditText roomEditText;
     private EditText numberOfStudentEditText;
+    private EditText creditEditText;
     private EditText noteEditText;
 
     private int mSelectDayEditText = 0;
@@ -57,6 +58,7 @@ public class AddSubjectActivity extends AppCompatActivity {
         selectEndTimeEditText = findViewById(R.id.select_end_time_edit_text);
         roomEditText = findViewById(R.id.room_edit_text);
         numberOfStudentEditText = findViewById(R.id.number_of_student_edit_text);
+        creditEditText = findViewById(R.id.credit_edit_text);
         noteEditText = findViewById(R.id.note_edit_text);
 
 
@@ -154,6 +156,7 @@ public class AddSubjectActivity extends AppCompatActivity {
                 final String room = roomEditText.getText().toString();
                 final String note = noteEditText.getText().toString();
                 final int numberOfStudent;
+                final int credit;
 
                 if(subjectName.length()==0){
                     Toast.makeText(AddSubjectActivity.this, "Subject name is null",Toast.LENGTH_SHORT).show();
@@ -179,10 +182,15 @@ public class AddSubjectActivity extends AppCompatActivity {
                     Toast.makeText(AddSubjectActivity.this, "Number of student is null",Toast.LENGTH_SHORT).show();
                 }
 
+                else if(creditEditText.getText().toString().length()==0){
+                    Toast.makeText(AddSubjectActivity.this, "Credit is null",Toast.LENGTH_SHORT).show();
+                }
+
                 else
                 {
                     numberOfStudent = Integer.parseInt(numberOfStudentEditText.getText().toString());
-                    final Subject subject = new Subject(0,subjectName,day,startTime,endTime,room,numberOfStudent,note, Calendar.getInstance().getTime());
+                    credit = Integer.parseInt(creditEditText.getText().toString());
+                    final Subject subject = new Subject(0,subjectName,day,startTime,endTime,room,numberOfStudent, credit, note, Calendar.getInstance().getTime());
                     AppExecutors executors = new AppExecutors();
                     executors.diskIO().execute(new Runnable() {
                         @Override

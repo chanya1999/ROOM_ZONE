@@ -48,6 +48,7 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.MyViewHo
         holder.endTimeTextView.setText(DateFormatter.formatTimeForUi(subject.endTime));
         holder.roomTextView.setText(subject.room);
         holder.numberOfStudentTextView.setText(subject.numberOfStudent + "");
+        holder.creditTextView.setText(subject.credit + "");
         holder.subject = subject;
 
     }
@@ -65,6 +66,7 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.MyViewHo
         TextView endTimeTextView;
         TextView roomTextView;
         TextView numberOfStudentTextView;
+        TextView creditTextView;
 
         View rootView;
         Subject subject;
@@ -79,6 +81,7 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.MyViewHo
             this.endTimeTextView = itemView.findViewById(R.id.end_time_text_view);
             this.roomTextView = itemView.findViewById(R.id.room_text_view);
             this.numberOfStudentTextView = itemView.findViewById(R.id.number_of_student_text_view);
+            this.creditTextView = itemView.findViewById(R.id.credit_text_view);
 
             this.rootView = itemView;
             rootView.setOnClickListener(new View.OnClickListener() {
