@@ -26,6 +26,7 @@
                 android:drawableLeft="@drawable/ic_baseline_book_24"
                 android:id="@+id/subject_name_text_view"
                 style="@style/TopicStyle"
+                android:gravity="bottom|left"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
