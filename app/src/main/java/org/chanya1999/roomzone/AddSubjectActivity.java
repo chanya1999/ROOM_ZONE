@@ -51,7 +51,7 @@ public class AddSubjectActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_subject);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-        //กำหนดตัวแปรต่าง ๆ สำหรับเชื่อมต่อกับการแสดงผง
+        //กำหนดตัวแปรต่าง ๆ สำหรับเชื่อมต่อกับการแสดงผล
         saveButton = findViewById(R.id.save_button);
         clearButton = findViewById(R.id.clear_button);
 
