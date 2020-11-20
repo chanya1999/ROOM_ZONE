@@ -7,6 +7,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+//คลาสสำหรับกำหนดรูปแบบการแสดงผลวันที่
 public class DateFormatter {
 
   private static final String TAG = DateFormatter.class.getName();
@@ -33,7 +34,7 @@ public class DateFormatter {
     return date;
   }
 
-  // จัดรูปแบบวันที่ สำหรับแสดงผลบนหน้าจอ
+  //จัดรูปแบบวันที่ สำหรับแสดงผลบนหน้าจอ
   public static String formatDateForUi(Date date) {
     assert date != null;
 

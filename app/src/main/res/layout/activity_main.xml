@@ -43,7 +43,6 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:fadeScrollbars="true"
-        android:padding="8dp"
         android:scrollbarAlwaysDrawVerticalTrack="false"
         android:scrollbarStyle="insideOverlay"
         android:scrollbarThumbHorizontal="@drawable/bg_button_pressed"

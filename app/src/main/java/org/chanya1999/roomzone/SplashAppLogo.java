@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.Window;
 
+//คลาสสำหรับกาารแสดงผลหน้าสัญลักษณ์
 public class SplashAppLogo extends AppCompatActivity {
 
     Handler handler;
@@ -21,6 +22,7 @@ public class SplashAppLogo extends AppCompatActivity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_splash_app_logo);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        //กำหนดการแสดงตราสัญลักษณ์ของแอปพลิเคชัน
         handler = new Handler();
 
         runnable = new Runnable() {

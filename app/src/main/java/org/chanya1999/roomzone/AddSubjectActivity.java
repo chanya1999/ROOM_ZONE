@@ -27,6 +27,7 @@ import org.chanya1999.roomzone.util.DateFormatter;
 import java.util.Calendar;
 import java.util.Date;
 
+//คลาสเพิ่มข้อมูล
 public class AddSubjectActivity extends AppCompatActivity {
 
     private Button saveButton;
@@ -49,6 +50,8 @@ public class AddSubjectActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_subject);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
+        //กำหนดตัวแปรต่าง ๆ สำหรับเชื่อมต่อกับการแสดงผง
         saveButton = findViewById(R.id.save_button);
         clearButton = findViewById(R.id.clear_button);
 
@@ -61,10 +64,12 @@ public class AddSubjectActivity extends AppCompatActivity {
         creditEditText = findViewById(R.id.credit_edit_text);
         noteEditText = findViewById(R.id.note_edit_text);
 
-
+        //กำหนดเหตุการณ์เมื่อกดช่องใส่วันในสัปดาห์
         selectDayEditText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                //สร้าง picker สำหรับเลือกวันในสัปดาห์
                 final NumberPicker picker = new NumberPicker(AddSubjectActivity.this);
                 final String[] daysOfWeek = Subject.longDaysOfWeek;
                 picker.setMinValue(0);
@@ -102,9 +107,12 @@ public class AddSubjectActivity extends AppCompatActivity {
             }
         });
 
+        //กำหนดเหตุการณ์เมื่อกดช่องใส่เวลาเริ่มต้น
         selectStartTimeEditText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                //สร้าง picker สำหรับเลือกเวลาเริ่มต้น
                 TimePickerDialog timePickerDialog = new TimePickerDialog(
                         AddSubjectActivity.this,
                         new TimePickerDialog.OnTimeSetListener() {
@@ -124,9 +132,12 @@ public class AddSubjectActivity extends AppCompatActivity {
             }
         });
 
+        //กำหนดเหตุการณ์เมื่อกดช่องใส่เวลาเริ่มต้น
         selectEndTimeEditText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                //สร้าง picker สำหรับเลือกเวลาเลิกเรียน
                 TimePickerDialog timePickerDialog = new TimePickerDialog(
                         AddSubjectActivity.this,
                         new TimePickerDialog.OnTimeSetListener() {
@@ -146,6 +157,7 @@ public class AddSubjectActivity extends AppCompatActivity {
             }
         });
 
+        //กำหนดเหตุการณ์เมื่อกดปุ่มบันทึก
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -158,39 +170,51 @@ public class AddSubjectActivity extends AppCompatActivity {
                 final int numberOfStudent;
                 final int credit;
 
+                //ตรวจสอบการป้อนข้อมูลชื่อวิชา หากเว้นว่างให้แสดง toast แจ้งเตือน
                 if(subjectName.length()==0){
                     Toast.makeText(AddSubjectActivity.this, "Subject name is null",Toast.LENGTH_SHORT).show();
                 }
 
+                //ตรวจสอบการป้อนข้อมูลวันในสัปดาห์ หากเว้นว่างให้แสดง toast แจ้งเตือน
                 else if(selectDayEditText.getText().toString().length()==0){
                     Toast.makeText(AddSubjectActivity.this, "Day is null",Toast.LENGTH_SHORT).show();
                 }
 
+                //ตรวจสอบการป้อนข้อมูลเวลาเริ่มต้น หากเว้นว่างให้แสดง toast แจ้งเตือน
                 else if(selectStartTimeEditText.getText().toString().length()==0){
                     Toast.makeText(AddSubjectActivity.this, "Start time is null",Toast.LENGTH_SHORT).show();
                 }
 
+                //ตรวจสอบการป้อนข้อมูลเวลาเลิกเรียน หากเว้นว่างให้แสดง toast แจ้งเตือน
                 else if(selectEndTimeEditText.getText().toString().length()==0){
                     Toast.makeText(AddSubjectActivity.this, "End time is null",Toast.LENGTH_SHORT).show();
                 }
 
+                //ตรวจสอบการป้อนข้อมูลสถานที่เรียน หากเว้นว่างให้แสดง toast แจ้งเตือน
                 else if(roomEditText.getText().toString().length()==0){
                     Toast.makeText(AddSubjectActivity.this, "Room is null",Toast.LENGTH_SHORT).show();
                 }
 
+                //ตรวจสอบการป้อนข้อมูลจำนวนผู้เรียน หากเว้นว่างให้แสดง toast แจ้งเตือน
                 else if(numberOfStudentEditText.getText().toString().length()==0){
                     Toast.makeText(AddSubjectActivity.this, "Number of student is null",Toast.LENGTH_SHORT).show();
                 }
 
+                //ตรวจสอบการป้อนข้อมูลจำนวนหน่วยกิต หากเว้นว่างให้แสดง toast แจ้งเตือน
                 else if(creditEditText.getText().toString().length()==0){
                     Toast.makeText(AddSubjectActivity.this, "Credit is null",Toast.LENGTH_SHORT).show();
                 }
 
+                //กรณีผ่านทุกเงื่อนไขตรวจสอบ
                 else
                 {
                     numberOfStudent = Integer.parseInt(numberOfStudentEditText.getText().toString());
                     credit = Integer.parseInt(creditEditText.getText().toString());
+
+                    //สร้างวัตถุรายวิชาที่ต้องการจัดเก็บโดยกำหนดพารามิเตอร์ตามที่ผู้ใช้กรอก
                     final Subject subject = new Subject(0,subjectName,day,startTime,endTime,room,numberOfStudent, credit, note, Calendar.getInstance().getTime());
+
+                    //แยกเธรดในการเชื่อมต่อฐานข้อมูล เพื่อเพิ่มข้อมูลลงฐานข้อมูล
                     AppExecutors executors = new AppExecutors();
                     executors.diskIO().execute(new Runnable() {
                         @Override
@@ -201,10 +225,12 @@ public class AddSubjectActivity extends AppCompatActivity {
                             finish();
                         }
                     });
+                    Toast.makeText(AddSubjectActivity.this, "ADD SUBJECT "+ subjectName.toUpperCase() + " ALREADY",Toast.LENGTH_SHORT).show();
                 }
             }
         });
 
+        //กำหนดเหตุการณ์เมื่อกดปุ่มล้าง ให้ช่องป้อนข้อมูลทุกช่องเว้นว่าง
         clearButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

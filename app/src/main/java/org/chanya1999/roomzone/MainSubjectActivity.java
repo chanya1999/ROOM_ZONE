@@ -25,6 +25,7 @@ import org.chanya1999.roomzone.util.DateFormatter;
 import java.util.Calendar;
 import java.util.Date;
 
+//คลาสแสดงหน้ารายละเอียดรายวิชา
 public class MainSubjectActivity extends AppCompatActivity {
     private TextView subjectNameTextView;
     private TextView dayTextView;
@@ -47,6 +48,8 @@ public class MainSubjectActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_subject);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
+        //กำหนดค่าเริ่มต้นให้กับตัวแปรต่าง ๆ เพื่อเชื่อมต่อกับส่วนของการแสดงผล
         subjectNameTextView = findViewById(R.id.m_s_subject_name_text_view);
         dayTextView = findViewById(R.id.m_s_day_text_view);
         startTimeTextView = findViewById(R.id.m_s_start_time_text_view);
@@ -62,9 +65,11 @@ public class MainSubjectActivity extends AppCompatActivity {
         deleteButton = findViewById(R.id.m_s_delete_button);
         closeButton = findViewById(R.id.m_s_close_button);
 
+        //รับค่าที่ถูกบีบอัดมาพร้อมกับการเรียกการแสดงผล
         Intent intent = getIntent();
         String subjectJson = intent.getStringExtra("subject");
         final Subject subject = new Gson().fromJson(subjectJson,Subject.class);
+        //กำหนดการแสดงผลต่าง ๆ ให้เป็นค่าที่รับมา
         subjectNameTextView.setText(subject.subjectName);
         dayTextView.setText(Subject.longDaysOfWeek[subject.day]);
         startTimeTextView.setText(DateFormatter.formatTimeForUi(subject.startTime));
@@ -77,22 +82,32 @@ public class MainSubjectActivity extends AppCompatActivity {
         lastUpdateTextView.setText(DateFormatter.formatDateForUi(subject.lastUpdate)+" "+DateFormatter.formatTimeForUi(subject.lastUpdate));
         lastUpdateTitleTextView.setText("LAST UPDATE: ");
 
+        //กำหนดเหตการณ์เมื่อกดปุ่มแก้ไข หรือบันทึกข้อความ
         editOrSaveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //เมื่อกดปุ่มจะสลับไปมาระหว่างแก้ไข-บันทึก
                 editNoteStage = !editNoteStage;
+                //ปรับการแสดงตามสถานะปุ่มแก้ไข-บันทึก
                 editOrSaveButton.setImageResource(editNoteStage ? R.drawable.ic_baseline_save_24 : R.drawable.ic_baseline_edit_24);
+                //กำหนดความสามรถในการแก้ไขตามสถานะ
                 noteEditText.setEnabled(editNoteStage);
+                //ซ่อนการแสดงวันที่ปรับปรุงล่าสุด
                 lastUpdateTextView.setText("");
                 lastUpdateTitleTextView.setText("");
                 Date tempLastUpdate = subject.lastUpdate;
+                //กำหนดให้แสดงแป้นพิมพ์และเคอเซอร์เมื่อมีการกดปุ่มแก้ไข
                 noteEditText.requestFocus();
                 InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.showSoftInput(noteEditText, InputMethodManager.SHOW_IMPLICIT);
 
+                //กรณีที่กดปุ่มเมื่ออยู่ในสถานะบันทึก(ไม่ใช่สถานะแก้ไข)
                 if(!editNoteStage){
+                    //ซ่อนแป้นพิมพ์และเคอเซอร์
                     imm.hideSoftInputFromWindow(view.getWindowToken(),0);
+                    //สร้างวัตถุใหม่เพื่อส่งไปปรับปรุงในฐานข้อมูล
                     final Subject newSubject = new Subject(subject.id,subject.subjectName,subject.day,subject.startTime,subject.endTime,subject.room,subject.numberOfStudent, subject.credit, noteEditText.getText().toString(), Calendar.getInstance().getTime());
+                    //แยกเธรดในการปรับปรุงข้อมูล
                     AppExecutors executors = new AppExecutors();
                     executors.diskIO().execute(new Runnable() {
                         @Override
@@ -101,7 +116,9 @@ public class MainSubjectActivity extends AppCompatActivity {
                             db.subjectDao().updateSubject(newSubject);
                         }
                     });
+                    //แสดงข้อมูลวันที่ปรับปรุงข้อมูลล่าสุด
                     lastUpdateTitleTextView.setText("LAST UPDATE: ");
+                    //ตรวจสอบว่าข้อมูลมีความเปลี่ยนแปลงหรือไม่ ถ้ามีจะปรับปรุงวันที่แก้ไข
                     if(!subject.note.equals(newSubject.note)) {
                         lastUpdateTextView.setText(DateFormatter.formatDateForUi(newSubject.lastUpdate)+" "+DateFormatter.formatTimeForUi(newSubject.lastUpdate));
                     }
@@ -112,16 +129,19 @@ public class MainSubjectActivity extends AppCompatActivity {
                 }
             }
         });
-
+        //กำหนดเหตุการณ์เมื่อกดปุ่มลบ
         deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //สร้าง alert dialog เพื่อยืนยันการลบข้อมูล
                 AlertDialog.Builder builder = new AlertDialog.Builder(MainSubjectActivity.this);
                 builder.setTitle("WARNING");
                 builder.setMessage("Do you want to delete "+subject.subjectName.toUpperCase() + "?");builder.setNegativeButton("NO", null);
+                //กำหนดเหต์การณ์เมื่อกดยืนยันที่จะลบ
                 builder.setPositiveButton("DELETE", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
+                        //แยกเธรดในการลบข้อมูลในฐานข้อมูล
                         AppExecutors executors = new AppExecutors();
                         executors.diskIO().execute(new Runnable() {
                             @Override
@@ -138,7 +158,7 @@ public class MainSubjectActivity extends AppCompatActivity {
                 dialog.show();
             }
         });
-
+        //กำหนดเหตุการณ์เมื่อกดปิด
         closeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -18,6 +18,7 @@ import org.chanya1999.roomzone.database.AppDatabase;
 import org.chanya1999.roomzone.model.Subject;
 import org.chanya1999.roomzone.util.AppExecutors;
 
+//คลาสหน้าจอแสดงผลหลัก
 public class MainActivity extends AppCompatActivity {
 
 
@@ -26,10 +27,12 @@ public class MainActivity extends AppCompatActivity {
     private TextView isEmptyTextView;
 
 
+    //เมธอดกำหนดการทำงานเมื่อระบบใช้งานหน้าจอหลัก
     @Override
     protected void onResume() {
         super.onResume();
 
+        //กำหนดการแสดงผลบนหน้าจอหลักให้มีการปรับปรุงให้ตรงกับฐานข้อมูลในปัจจุบันทุกครั้งเมื่อมีการเข้าถึง
         final AppExecutors executors = new AppExecutors();
         executors.diskIO().execute(new Runnable() {
             @Override
@@ -37,16 +40,19 @@ public class MainActivity extends AppCompatActivity {
                 AppDatabase db = AppDatabase.getInstance(MainActivity.this);
                 final Subject[] subjects = db.subjectDao().getAllSubjects();
 
+                //แบ่งเธรดในการเชื่อมต่อฐานข้อมูล และการแสดงผลสถานะว่าง/มีข้อมูล
                 executors.mainThread().execute(new Runnable() {
                     @Override
                     public void run() {
                         SubjectAdapter adapter = new SubjectAdapter(MainActivity.this, subjects);
                         mRecyclerView.setAdapter(adapter);
-                        isEmptyTextView.setText("");
-                        isEmptyTextView.setCompoundDrawablesWithIntrinsicBounds(0,0,0,0);
-                        if(subjects.length==0){
-                            isEmptyTextView.setText("Empty");
-                            isEmptyTextView.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_baseline_folder_open_24,0,0,0);
+                        isEmptyTextView.setText("Empty Subject");
+                        isEmptyTextView.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_baseline_folder_open_24,0,0,0);
+
+                        //ตรวจสอบหากมีข้อมูลไม่ต้องแสดงผลสถานะว่าง
+                        if(subjects.length>0){
+                            isEmptyTextView.setText("");
+                            isEmptyTextView.setCompoundDrawablesWithIntrinsicBounds(0,0,0,0);
                         }
                     }
                 });
@@ -60,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
+        //กำหนดค่าเริ่มต้นของตัวแปรต่าง ๆ เพื่อเชื่อมต่อกับส่วนแสดงผล
         isEmptyTextView = findViewById(R.id.is_empty_text_view);
         addClassroomButton = findViewById(R.id.add_classroom_button);
         mRecyclerView = findViewById(R.id.subject_recycler_view);
